@@ -1,3 +1,4 @@
+
 fetch(PRODUCTS_URL)
 
     .then(respuesta => respuesta.json())
@@ -31,6 +32,8 @@ fetch(PRODUCTS_URL)
             document.getElementById("main").innerHTML = htmlContentToAppend;
         }
     })
+    
+ 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
