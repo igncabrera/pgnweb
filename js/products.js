@@ -1,13 +1,70 @@
+const ORDER_ASC_BY_NAME = "AZ";
+const ORDER_DESC_BY_NAME = "ZA";
+const ORDER_BY_RELEVANCE = "Revel.";
+const ORDER_ASC_BY_PRICE = "Precio Asc"
+const ORDER_DES_BY_PRICE =  "Precio Desc"
+var currentCategoriesArray = [];
+var currentSortCriteria = undefined;
+var minCount = undefined;
+var maxCount = undefined;
 
-fetch(PRODUCTS_URL)
+function sortCategories(criteria, array){
+    let result = [];
+    if (criteria === ORDER_ASC_BY_NAME)
+    {
+        result = array.sort(function(a, b) {
+            if ( a.name < b.name ){ return -1; }
+            if ( a.name > b.name ){ return 1; }
+            return 0;
+        });
+    }else if (criteria === ORDER_DESC_BY_NAME){
+        result = array.sort(function(a, b) {
+            if ( a.name > b.name ){ return -1; }
+            if ( a.name < b.name ){ return 1; }
+            return 0;
+        });
+    }else if (criteria === ORDER_BY_RELEVANCE){
+        result = array.sort(function(a, b) {
+            let aCount = parseInt(a.soldCount);
+            let bCount = parseInt(b.soldCount);
 
-    .then(respuesta => respuesta.json())
+            if ( aCount > bCount ){ return -1; }
+            if ( aCount < bCount ){ return 1; }
+            return 0;
+        });
+    } else if(criteria == ORDER_DES_BY_PRICE){
+        result = array.sort(function(a, b){
+            let aCount = parseInt(a.cost);
+            let bCount = parseInt(b.cost);
 
-    .then(array => {
+            if ( aCount > bCount ){ return -1; }
+            if ( aCount < bCount ){ return 1; }
+            return 0;
+        })
+    } else if(criteria == ORDER_ASC_BY_PRICE){
+        result = array.sort(function(a, b){
+            let aCount = parseInt(a.cost);
+            let bCount = parseInt(b.cost);
 
-        let htmlContentToAppend = "";
-        for (let i = 0; i < array.length; i++) {
-            let category = array[i]; // agarra todos los objetos y los mete en una lista para usarlos en el for
+            if ( aCount < bCount ){ return -1; }
+            if ( aCount > bCount ){ return 1; }
+            return 0;
+        })
+    }
+
+
+    return result;
+}
+
+function showCategoriesList(){
+
+    let htmlContentToAppend = "";
+    for(let i = 0; i < currentCategoriesArray.length; i++){ //accede a cada elemento mediante un for
+        let category = currentCategoriesArray[i];
+
+        if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))){ /*se fija si la cantidad de productos supera el minimo
+                y no excede el maximo, y es distinto de indefinido, para ser mostrada en la lista de productos (asumo, porque si supera el conteo maximo se va a otra pagina o para filtrar) */
 
             htmlContentToAppend += `
             <a href="product-info.html" class="list-group-item list-group-item-action">
@@ -27,17 +84,91 @@ fetch(PRODUCTS_URL)
                     </div>
                 </div>
             </a>
-            ` //esto es lo que se añade al innerHTML
-
-            document.getElementById("main").innerHTML = htmlContentToAppend;
+            `
         }
-    })
-    
- 
+
+        document.getElementById("main").innerHTML = htmlContentToAppend; //suma el contenido que se obtuvo mediante el for, al innerHTML mediante DOM 
+    }
+}
+
+function sortAndShowCategories(sortCriteria, categoriesArray){
+    currentSortCriteria = sortCriteria;
+
+    if(categoriesArray != undefined){
+        currentCategoriesArray = categoriesArray;
+    }
+
+    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
+
+    //Muestro las categorías ordenadas
+    showCategoriesList();
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function (e) {
+document.addEventListener("DOMContentLoaded", function(e){
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){
+            sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
+        }
+    });
 
+    document.getElementById("sortAsc").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_ASC_BY_NAME);
+    });
+
+    document.getElementById("sortDesc").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_DESC_BY_NAME);
+    });
+
+    document.getElementById("sortByRelev").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_BY_RELEVANCE);
+    });
+
+    document.getElementById("sortByPriceDes").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_DES_BY_PRICE);
+    });
+    
+    document.getElementById("sortByPriceAsc").addEventListener("click", function(){
+        sortAndShowCategories(ORDER_ASC_BY_PRICE);
+    });
+
+    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+        document.getElementById("rangeFilterCountMin").value = "";
+        document.getElementById("rangeFilterCountMax").value = "";
+
+        minCount = undefined;
+        maxCount = undefined;
+
+        showCategoriesList();
+    });
+
+    document.getElementById("rangeFilterCount").addEventListener("click", function(){
+        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
+        //de productos por categoría.
+        minCount = document.getElementById("rangeFilterCountMin").value;
+        maxCount = document.getElementById("rangeFilterCountMax").value;
+
+        if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
+            minCount = parseInt(minCount);
+        }
+        else{
+            minCount = undefined;
+        }
+
+        if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
+            maxCount = parseInt(maxCount);
+        }
+        else{
+            maxCount = undefined;
+        }
+
+        showCategoriesList();
+    });
 });
+
+
+
+ 
+

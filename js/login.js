@@ -3,8 +3,10 @@ var intento = 3; //Numero de intentos disponibles
 function validar() {
 
     var password = document.getElementById("password").value;
+    var username = document.getElementById("username").value;
 
-    if (password.length >= 8) {     
+    if (password.length >= 8) {
+            sessionStorage.setItem("username", username)     
             alert("Accediste exitosamente");
             window.location = "mainmenu.html"; // Redirecciona a la otra pagina
             intento = 3
