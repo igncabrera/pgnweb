@@ -3,6 +3,7 @@ const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_RELEVANCE = "Revel.";
 const ORDER_ASC_BY_PRICE = "Precio Asc"
 const ORDER_DES_BY_PRICE =  "Precio Desc"
+const ORDER_BY_SEARCH = "Search"
 var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
