@@ -3,7 +3,6 @@ const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_RELEVANCE = "Revel.";
 const ORDER_ASC_BY_PRICE = "Precio Asc"
 const ORDER_DES_BY_PRICE =  "Precio Desc"
-const ORDER_BY_SEARCH = "Search"
 var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
@@ -66,29 +65,34 @@ function showCategoriesList(){
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))){ /*se fija si la cantidad de productos supera el minimo
                 y no excede el maximo, y es distinto de indefinido, para ser mostrada en la lista de productos (asumo, porque si supera el conteo maximo se va a otra pagina o para filtrar) */
-
-            htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ category.name +`</h4>
-                            <small class="text-muted">` + category.soldCount + ` artículos vendidos</small>
+            
+            
+                
+                htmlContentToAppend += `
+                <a href="product-info.html" class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
                         </div>
-                        <p class="mb-1">` + category.description + `</p>
-                        <br>
-                        <br>
-                        <p class="mb-1">`+ `Precio: `  + category.cost + ` ` + category.currency + `</p>
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">`+ category.name +`</h4>
+                                <small class="text-muted">` + category.soldCount + ` artículos vendidos</small>
+                            </div>
+                            <p class="mb-1">` + category.description + `</p>
+                            <br>
+                            <br>
+                            <p class="mb-1">`+ `Precio: `  + category.cost + ` ` + category.currency + `</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-            `
+                </a>
+                `
+            
+                document.getElementById("main").innerHTML = htmlContentToAppend; //suma el contenido que se obtuvo mediante el for, al innerHTML mediante DOM 
+          
         }
 
-        document.getElementById("main").innerHTML = htmlContentToAppend; //suma el contenido que se obtuvo mediante el for, al innerHTML mediante DOM 
+        
     }
 }
 
