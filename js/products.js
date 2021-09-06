@@ -7,6 +7,47 @@ var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
+const formulario = document.querySelector('#formulario')
+const boton = document.querySelector('#boton')
+const resultado = document.querySelector('#main')
+const filtrar = ()=>{
+    // console.log(formulario.value)
+    resultado.innerHTML = ''
+    const texto = formulario.value.toLowerCase();
+    for(let producto of currentCategoriesArray){
+        let nombre = producto.name.toLowerCase();
+        if(nombre.indexOf(texto) !== -1){
+        resultado.innerHTML +=  `
+        <a href="product-info.html" class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-3">
+                    <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-1">`+ producto.name +`</h4>
+                        <small class="text-muted">` + producto.soldCount + ` artículos vendidos</small>
+                    </div>
+                    <p class="mb-1">` + producto.description + `</p>
+                    <br>
+                    <br>
+                    <p class="mb-1">`+ `Precio: `  + producto.cost + ` ` + producto.currency + `</p>
+                </div>
+            </div>
+        </a>
+        `
+        }
+    }
+    if(resultado.innerHTML == ''){
+        resultado.innerHTML += `Producto no encontrado...`
+    }
+}
+
+formulario.addEventListener('keyup', filtrar)
+
+
+
+
 
 function sortCategories(criteria, array){
     let result = [];
