@@ -3,7 +3,7 @@ const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_RELEVANCE = "Revel.";
 const ORDER_ASC_BY_PRICE = "Precio Asc"
 const ORDER_DES_BY_PRICE =  "Precio Desc"
-var currentCategoriesArray = [];
+var currentCommentsArray = [];
 var currentSortCriteria = undefined;
 var minCount = undefined;
 var maxCount = undefined;
@@ -14,7 +14,7 @@ const filtrar = ()=>{
     // console.log(formulario.value)
     resultado.innerHTML = ''
     const texto = formulario.value.toLowerCase();
-    for(let producto of currentCategoriesArray){
+    for(let producto of currentCommentsArray){
         let nombre = producto.name.toLowerCase();
         if(nombre.indexOf(texto) !== -1){
         resultado.innerHTML +=  `
@@ -100,8 +100,8 @@ function sortCategories(criteria, array){
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < currentCategoriesArray.length; i++){ //accede a cada elemento mediante un for
-        let category = currentCategoriesArray[i];
+    for(let i = 0; i < currentCommentsArray.length; i++){ //accede a cada elemento mediante un for
+        let category = currentCommentsArray[i];
 
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.cost) <= maxCount))){ /*se fija si la cantidad de productos supera el minimo
@@ -141,10 +141,10 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
 
     if(categoriesArray != undefined){
-        currentCategoriesArray = categoriesArray;
+        currentCommentsArray = categoriesArray;
     }
 
-    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
+    currentCommentsArray = sortCategories(currentSortCriteria, currentCommentsArray);
 
     //Muestro las categorías ordenadas
     showCategoriesList();
