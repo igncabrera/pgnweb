@@ -1,4 +1,31 @@
 var currentCommentsArray = [];
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+var dateTime = date+' '+time;
+const ratingStars = [...document.getElementsByClassName("rating__star")];
+let reviewLimit = 0
+
+function executeRating(stars) {
+  const starClassActive = "rating__star fas fa-star";
+  const starClassInactive = "rating__star far fa-star";
+  const starsLength = stars.length;
+  let i;
+  stars.map((star) => {
+    star.onclick = () => {
+      i = stars.indexOf(star);
+
+      if (star.className === starClassInactive) {
+        for (i; i >= 0; --i) stars[i].className = starClassActive, stars[i].name = "on"
+      } else {
+        for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
+        
+      }
+    };
+  });
+}
+executeRating(ratingStars);
+
 
 function showComments(){
 
@@ -35,6 +62,36 @@ function showComments(){
 }
 
 
+
+function newComment(){
+    if(reviewLimit === 0){
+        let htmlContentToAppend = "";
+        let comment = document.getElementById('newCommentText').value;
+        let user = sessionStorage.getItem("username");
+        let score = document.querySelectorAll('.fas').length
+        let switchOnStar = `<span class="fa fa-star checked"></span>`
+        let switchOffStar = `<span class="fa fa-star"></span>`
+        htmlContentToAppend += `
+        <div class="row card">
+                        <br>
+                            <div class="col">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h4 class="mb-1">`+ user + ' ' + switchOnStar.repeat(score) + switchOffStar.repeat(5 - score) +`</h4>
+                                    <small class="text-muted">Fecha: ` + dateTime + ` </small>
+                                </div>
+                                <br>
+                                <p class="mb-1">` + comment + `</p>
+                                <br>
+                            </div>
+                        </div>
+        `
+        document.getElementById('comments').innerHTML += htmlContentToAppend
+        reviewLimit = 1
+    } else{
+        alert("Ya no puedes realizar mas reseñas")
+    }
+    
+}
 
 
 
