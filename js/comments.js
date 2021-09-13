@@ -106,6 +106,11 @@ function sortComments(commentsArray){
     showComments();
 }
 
+var texto = sessionStorage.getItem("username")
+if (sessionStorage.getItem("username") !== null) {
+  document.getElementById("commentUser").innerHTML += texto
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.

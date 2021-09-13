@@ -13,18 +13,81 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/menu.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <nav class="site-header sticky-top py-1 bg-dark">
-      <div class="container d-flex flex-column flex-md-row justify-content-between" id="logger">
-        <a class="py-2 d-none d-md-inline-block" href="mainmenu.html">Inicio</a>
-        <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-        <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-        <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-        <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+    <div class="sidebar close">
+      <div class="logo-details">
+        <i class='bx bxl-c-plus-plus'></i>
+        <span class="logo_name">Inicio</span>
       </div>
-    </nav>
-    <main role="main" class="pb-5">
+      <ul class="nav-links">
+        <li>
+          <a href="mainmenu.html">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="link_name">Inicio</span>
+          </a>
+        </li>
+        <li>
+          <div class="iocn-link">
+            <a href="categories.html">
+              <i class='bx bx-collection' ></i>
+              <span class="link_name">Categorias</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a href="category-info.html">Autos</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="iocn-link">
+            <a href="products.html">
+              <i class='bx bx-book-alt' ></i>
+              <span class="link_name">Productos</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a href="product-info.html">Chevrolet Onix Joy</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="sell.html">
+            <i class='bx bx-pie-chart-alt-2' ></i>
+            <span class="link_name">Vender</span>
+          </a>
+        </li>
+        <li>
+          <a href="cart.html">
+            <i class='bx bx-line-chart' ></i>
+            <span class="link_name">Carrito</span>
+          </a>
+        </li>
+        
+        <li>
+      <div class="profile-details">
+        <div class="profile-content">
+          <img src="https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg" alt="profileImg">
+        </div>
+        <div class="name-job">
+          <div class="profile_name" id="logger"></div>
+          <div class="job">Trabajo</div>
+        </div>
+        <i class='bx bx-log-out' onclick="logOut()"></i>
+      </div>
+    </li>
+  </ul>
+    </div>
+    <section class="home-section">
+      <div class="home-content">
+        <i class='bx bx-menu' ></i>
+        <span class="text"></span>
+      </div>
+      <main role="main" class="pb-5">
         <div class="text-center p-4">
             <h2>Categorías</h2>
             <p class="lead">Verás aquí todas las categorías del sitio.</p>
@@ -84,6 +147,7 @@
       </div>
     </footer>
     <div id="spinner-wrapper"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+    </section>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
