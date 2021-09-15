@@ -93,6 +93,10 @@ function newComment(){
     
 }
 
+function closeCommentBox(){
+    document.getElementsByClassName('.card-link text-dark').className = "card-link text-dark collapsed"
+}
+
 
 
 function sortComments(commentsArray){
@@ -121,3 +125,4 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     })
 });
+
