@@ -68,7 +68,7 @@ function newComment(){
         let htmlContentToAppend = "";
         let comment = document.getElementById('newCommentText').value;
         let user = sessionStorage.getItem("username");
-        let score = document.querySelectorAll('.fas').length
+        let score = document.querySelectorAll('.fas').length;
         let switchOnStar = `<span class="fa fa-star checked"></span>`
         let switchOffStar = `<span class="fa fa-star"></span>`
         htmlContentToAppend += `
