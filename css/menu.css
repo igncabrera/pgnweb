@@ -17,7 +17,7 @@
   transition: all 0.5s ease;
 }
 .sidebar.close{
-  width: 78px;
+  width: 60px;
 }
 .sidebar .logo-details{
   height: 60px;
@@ -29,7 +29,7 @@
   font-size: 30px;
   color: #fff;
   height: 50px;
-  min-width: 78px;
+  min-width: 55px;
   text-align: center;
   line-height: 50px;
 }
@@ -74,7 +74,7 @@
 }
 .sidebar .nav-links li i{
   height: 50px;
-  min-width: 78px;
+  min-width: 55px;
   text-align: center;
   line-height: 50px;
   color: #fff;
@@ -126,7 +126,7 @@
 .sidebar.close .nav-links li .sub-menu{
   position: absolute;
   left: 100%;
-  top: -10px;
+  top: 10px;
   margin-top: 0;
   padding: 10px 20px;
   border-radius: 0 6px 6px 0;
@@ -186,7 +186,7 @@
   width: 52px;
   object-fit: cover;
   border-radius: 16px;
-  margin: 0 14px 0 12px;
+  margin: 0 14px 0 4px;
   background: #1d1b31;
   transition: all 0.5s ease;
 }
@@ -243,3 +243,70 @@
     display: none;
   }
 }
+
+
+.sidebar .nav-links li .sub-menu2{
+  margin-top: -10px;
+  background: #1d1b31;
+  display: none;
+}
+.sidebar .nav-links li.showMenu .sub-menu2{
+  display: block;
+}
+.sidebar .nav-links li .sub-menu2 a{
+  color: #fff;
+  font-size: 15px;
+  padding: 5px 0;
+  white-space: nowrap;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+.sidebar .nav-links li .sub-menu2 a:hover{
+  opacity: 1;
+}
+.sidebar.close .nav-links li .sub-menu2{
+  position: absolute;
+  left: 100%;
+  top: 10px;
+  margin-top: 0;
+  padding: 10px 20px;
+  border-radius: 0 6px 6px 0;
+  opacity: 0;
+  display: block;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar.close .nav-links li:hover .sub-menu2{
+  top: 0;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li .sub-menu2 .link_name{
+  display: none;
+}
+.sidebar.close .nav-links li .sub-menu2 .link_name{
+  font-size: 18px;
+  opacity: 1;
+  display: block;
+}
+.sidebar .nav-links li .sub-menu2.blank{
+  opacity: 1;
+  pointer-events: auto;
+  padding: 3px 20px 6px 16px;
+  opacity: 0;
+  pointer-events: none;
+}
+.sidebar .nav-links li:hover .sub-menu2.blank{
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 420px) {
+  .sidebar.close .nav-links li .sub-menu2{
+    display: none;
+  }
+}
+
+
+

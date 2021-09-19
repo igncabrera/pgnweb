@@ -3,7 +3,7 @@ var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 var dateTime = date+' '+time;
-const ratingStars = [...document.getElementsByClassName("rating__star")];
+const ratingStars = [...document.getElementsByClassName("rating__star")]; //consigue todas las estrellas (las trae mediante la clase)
 let reviewLimit = 0
 
 function executeRating(stars) {
@@ -20,7 +20,7 @@ function executeRating(stars) {
       } else {
         for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
         
-      }
+      } //mediante map busca y marca las estrellas dependiendo hasta donde halla clickeado el usuario
     };
   });
 }
@@ -32,12 +32,9 @@ function showComments(){
     let htmlContentToAppend = "";
     for(let i = 0; i < currentCommentsArray.length; i++){
         let switchOnStar = `<span class="fa fa-star checked"></span>`
-        let switchOffStar = `<span class="fa fa-star"></span>` //accede a cada elemento mediante un for
+        let switchOffStar = `<span class="fa fa-star"></span>` //declara variables para estrellas encendidas y apagadas
         let comment = currentCommentsArray[i];
-
-                /*se fija si la cantidad de productos supera el minimo
-                y no excede el maximo, y es distinto de indefinido, para ser mostrada en la lista de productos (asumo, porque si supera el conteo maximo se va a otra pagina o para filtrar) */
-            
+           
                 htmlContentToAppend += `
                     <div class="row card">
                     <br>
@@ -52,12 +49,8 @@ function showComments(){
                         </div>
                     </div>
                 `
-            
-                document.getElementById("comments").innerHTML = htmlContentToAppend; //suma el contenido que se obtuvo mediante el for, al innerHTML mediante DOM 
-          
-        
-
-        
+         
+                document.getElementById("comments").innerHTML = htmlContentToAppend; //suma los comentarios al contenedor de los mismos   
     }
 }
 
@@ -68,7 +61,7 @@ function newComment(){
         let htmlContentToAppend = "";
         let comment = document.getElementById('newCommentText').value;
         let user = sessionStorage.getItem("username");
-        let score = document.querySelectorAll('.fas').length;
+        let score = document.querySelectorAll('.fas').length; //trae como integral la cantidad de elementos con la clase "fas", para atribuirle un valor "score"
         let switchOnStar = `<span class="fa fa-star checked"></span>`
         let switchOffStar = `<span class="fa fa-star"></span>`
         htmlContentToAppend += `
@@ -95,20 +88,10 @@ function newComment(){
 
 function closeCommentBox(){
     document.getElementsByClassName('.card-link text-dark').className = "card-link text-dark collapsed"
-}
+} //un collapse para contraer nuevamente la caja para realizar nuevos comentarios
 
 
-
-function sortComments(commentsArray){
-
-    if(commentsArray != undefined){
-        currentCommentsArray = commentsArray;
-    }
-
-
-    //Muestro las categorías ordenadas
-    showComments();
-}
+showComments()
 
 var texto = sessionStorage.getItem("username")
 if (sessionStorage.getItem("username") !== null) {
