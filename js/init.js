@@ -59,6 +59,8 @@ sidebarBtn.addEventListener("click", () => {
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
 })
+
+/*
 document.getElementById('').innerHTML = `
 <div class="logo-details">
 <i class='bx bx-store-alt'></i>
@@ -128,4 +130,4 @@ document.getElementById('').innerHTML = `
 
 
 </ul>
-`
+` */
