@@ -16,7 +16,7 @@ function executeRating(stars) {
       i = stars.indexOf(star);
 
       if (star.className === starClassInactive) {
-        for (i; i >= 0; --i) stars[i].className = starClassActive, stars[i].name = "on"
+        for (i; i >= 0; --i) stars[i].className = starClassActive
       } else {
         for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
         
@@ -79,7 +79,7 @@ function newComment(){
                         </div>
         `
         document.getElementById('comments').innerHTML += htmlContentToAppend
-        reviewLimit = 1
+
     } else{
         alert("Ya no puedes realizar mas reseñas")
     }
@@ -105,6 +105,9 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
         }
+        comments = resultObj.data
+        currentCommentsArray = comments
+        showComments(currentCommentsArray)
     })
 });
 
