@@ -23,10 +23,10 @@ function relatedProducts(){
   
   let htmlContentToAppend = ""
 
-  for(let i = 0; i < product.relatedProducts.length; i++){
+  for(let i = 0; i < product.relatedProducts.length; i++){ //for segun la longitud (cantidad) del objeto que tiene los productos relacionados
 
-    let index = product.relatedProducts[i]
-    let related = relatedArray[index]
+    let index = product.relatedProducts[i] //ambos elementos del objeto "relatedProducts" son contenidos en una variable global para ser usado como indice de que elemento buscar en productos
+    let related = relatedArray[index] //lista de todos los productos posibles usando la variable index para buscar los que se piden 
     
      htmlContentToAppend += `
      <div class="col-md-4">
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            product = resultObj.data;
+            product = resultObj.data; //accede a la variable global y le proporciona todos los datos necesarios sobre el producto en cuestion (chevrolet onix)
 
 
             let categoryNameHTML  = document.getElementById("productName");
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL).then(function(resultObj){
       if (resultObj.status === "ok")
       {
-        relatedArray = resultObj.data
+        relatedArray = resultObj.data //accede a la variable global y le proporciona todos los datos de la lista completa de productos
        
       relatedProducts();
       }
