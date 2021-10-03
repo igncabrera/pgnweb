@@ -1,5 +1,6 @@
 var product = {};
 var comment = {};
+var relatedArray = {};
 
 function showImagesGallery(array){
 
@@ -18,6 +19,30 @@ function showImagesGallery(array){
 
 
 
+function relatedProducts(){
+  
+  let htmlContentToAppend = ""
+
+  for(let i = 0; i < product.relatedProducts.length; i++){
+
+    let index = product.relatedProducts[i]
+    let related = relatedArray[index]
+    
+     htmlContentToAppend += `
+     <div class="col-md-4">
+                <a href="" class="card mb-4 shadow-sm custom-card">
+                  <img class="bd-placeholder-img card-img-top"  src="`+ related.imgSrc + `">
+                  <h3 class="m-3">`+ related.name+`</h3>
+                  <div class="card-body" style="min-height: 135px;">
+                    <p class="card-text">`+ related.description +`</p>
+                  </div>
+                </a>
+              </div>
+    
+     `
+    document.getElementById('relatedProducts').innerHTML = htmlContentToAppend
+  }
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -28,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok")
         {
             product = resultObj.data;
+
 
             let categoryNameHTML  = document.getElementById("productName");
             let categoryDescriptionHTML = document.getElementById("productDescription");
@@ -40,14 +66,21 @@ document.addEventListener("DOMContentLoaded", function(e){
             productSoldCountHTML.innerHTML = product.soldCount;
             productCategoryHTML.innerHTML = product.category;
             productCostHTML.innerHTML = product.cost
+            
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
         }
     });
-
-});
-
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+      if (resultObj.status === "ok")
+      {
+        relatedArray = resultObj.data
+       
+      relatedProducts();
+      }
+    });
+  });
 
 
 const slider = document.querySelector(".slider");

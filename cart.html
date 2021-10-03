@@ -10,27 +10,16 @@
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <link href="css/dropzone.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
 </head>
 
 <body>
@@ -76,15 +65,7 @@
           <span class="link_name">Vender</span>
         </a>
       </li>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <li>
+      <li style="bottom: -61%;">
         <ul class="sub-menu2">
           <li><a href="my-profile.html"><i class='bx bxs-user' ></i>Mi perfil</a></li>
           <li><a href="cart.html"><i class='bx bx-cart'></i>Carrito</a></li>
@@ -102,6 +83,46 @@
       </li>
     </ul>
   </div>
+
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu'></i>
+      <span class="text"></span>
+    </div>
+    <main role="main">
+      
+      <div class="text-center p-4">
+        <h2>Carrito</h2>
+        <p class="lead">Verás aquí los productos que agregaste a tu carrito.</p>
+       </div>
+
+       <div class="shopping-cart">
+
+        <div class="column-labels mt-3">
+          <label class="product-image">Imagen</label>
+          <label class="product-details">Producto</label>
+          <label class="product-price">Precio</label>
+          <label class="product-quantity">Cantidad</label>
+          <label class="product-removal">Remover</label>
+          <label class="product-line-price">Total</label>
+        </div>
+      <div id="items">
+        
+      </div>
+
+        <div class="totals">
+          <div class="totals-item totals-item-total">
+            <label>Total</label>
+            <div class="totals-value" id="cart-total"></div>
+          </div>
+        </div>
+            
+            <button class="checkout">Checkout</button>
+      
+      </div>
+    </main>
+  </section>
+  
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

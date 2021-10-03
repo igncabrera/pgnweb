@@ -79,7 +79,7 @@ function newComment(){
                         </div>
         `
         document.getElementById('comments').innerHTML += htmlContentToAppend
-
+        reviewLimit = 1
     } else{
         alert("Ya no puedes realizar mas reseñas")
     }
