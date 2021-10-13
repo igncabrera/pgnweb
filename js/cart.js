@@ -8,35 +8,34 @@ let count = 0;
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
-    getJSONData(CART_INFO_URL).then(function (resultObj) {
+  getJSONData(CART_INFO_URL).then(function (resultObj) {
 
-        items = resultObj.data
+    items = resultObj.data // guarda en la variable global todo lo que trajo el getJSONData 
 
-        
-        
-        showItems(items)
-    })
+    showItems(items)
+    
+  })
 });
 
 
-function showItems(){
+function showItems() {
 
-    let htmlContentToAppend = "";
+  let htmlContentToAppend = "";
 
-    for (let i = 0; i < items.articles.length; i++) {
+  for (let i = 0; i < items.articles.length; i++) {
 
-        let item = items.articles[i]
-        let price = item.unitCost
-        let subTotal = (price) * (item.count)
-        let newCurrency = item.currency 
-        if(item.currency === "USD"){
-            subTotal = subTotal*40
-            newCurrency = "UYU"
-        }
-        count += subTotal
+    let item = items.articles[i]
+    let price = item.unitCost
+    let subTotal = (price) * (item.count)
+    let newCurrency = item.currency
+    if (item.currency === "USD") {
+      subTotal = subTotal * 40
+      newCurrency = "UYU"
+    }
+    count += subTotal
 
-    
-        htmlContentToAppend += `
+
+    htmlContentToAppend += `
         <div class="product">
           <div class="product-image">
             <img src="`+ item.src + `">
@@ -44,21 +43,41 @@ function showItems(){
           <div class="product-details">
             <h1 class="text-center">`+ item.name + `</h1>
           </div>
-          <div class="product-price">`+ price + " " + item.currency +`</div>
+          <div class="product-price">`+ price + " " + item.currency + `</div>
           <div class="product-quantity">
-            <input type="number" value="`+ item.count + `" min="0">
+            <input type="number" value="`+ item.count + `" min="1" id="` + i + `" oninput="update(` + i + `)">
           </div>
           <div class="product-removal">
             <button class="remove-product">
               Remove
             </button>
           </div>
-          <div class="product-line-price">`+ subTotal + " " + newCurrency +  `</div>
+          <div class="product-line-price" id="Subtotal`+i+`">` + subTotal +" "+ newCurrency+`</div>
         </div>
         `
-    }
-    document.getElementById('items').innerHTML += htmlContentToAppend
-    document.getElementById('cart-total').innerHTML = count + " " + "UYU"
+        
+  }
+  document.getElementById('items').innerHTML += htmlContentToAppend
+  document.getElementById('cart-total').innerHTML = count + " " + "UYU"
 }
 
+function update(id) {
+  let newCurrency = items.articles[id].currency
+  let subTotal = items.articles[id].unitCost
+  if (items.articles[id].currency === "USD") {
+    subTotal = subTotal * 40
+    newCurrency = "UYU"
+  }
+  var quantity = document.getElementById(id).value;
+  document.getElementById("Subtotal" + id).innerHTML = quantity * subTotal  + " " + newCurrency;
+  subTotalSum();
+}
+
+function subTotalSum(){
+  let subtotal = 0
+  for(let i = 0; i < items.articles.length; i++){
+     subtotal += parseFloat(document.getElementById("Subtotal"+i).innerHTML, 10)
+  }
+  document.getElementById('cart-total').innerHTML = subtotal +" "+ "UYU"
+}
 

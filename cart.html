@@ -10,16 +10,16 @@
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/menu.css">
-    <link rel="stylesheet" href="./css/cart.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/menu.css">
+  <link rel="stylesheet" href="./css/cart.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
@@ -67,7 +67,7 @@
       </li>
       <li style="bottom: -61%;">
         <ul class="sub-menu2">
-          <li><a href="my-profile.html"><i class='bx bxs-user' ></i>Mi perfil</a></li>
+          <li><a href="my-profile.html"><i class='bx bxs-user'></i>Mi perfil</a></li>
           <li><a href="cart.html"><i class='bx bx-cart'></i>Carrito</a></li>
         </ul>
         <div class="profile-details">
@@ -90,13 +90,13 @@
       <span class="text"></span>
     </div>
     <main role="main">
-      
+
       <div class="text-center p-4">
         <h2>Carrito</h2>
         <p class="lead">Verás aquí los productos que agregaste a tu carrito.</p>
-       </div>
+      </div>
 
-       <div class="shopping-cart">
+      <div class="shopping-cart">
 
         <div class="column-labels mt-3">
           <label class="product-image">Imagen</label>
@@ -104,25 +104,84 @@
           <label class="product-price">Precio</label>
           <label class="product-quantity">Cantidad</label>
           <label class="product-removal">Remover</label>
-          <label class="product-line-price">Total</label>
+          <label class="">Total</label>
         </div>
-      <div id="items">
-        
-      </div>
+        <div id="items">
+
+        </div>
 
         <div class="totals">
+          <div class="totals-item">
+            <label>Envio</label>
+            <div class="totals-value" id="cart-shipping"></div>
+          </div>
           <div class="totals-item totals-item-total">
             <label>Total</label>
             <div class="totals-value" id="cart-total"></div>
           </div>
         </div>
-            
-            <button class="checkout">Checkout</button>
-      
+
+        <button class="checkout">Checkout</button>
+
       </div>
+
+      <div class="">
+        <div class="">
+          <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Información del producto</h4>
+            <form class="needs-validation" id="sell-info">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="productName">Nombre</label>
+                  <input type="text" class="form-control" id="productName" placeholder="" value="">
+                  <div class="invalid-feedback">
+                    Ingresa un nombre
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="productName">Nombre</label>
+                  <input type="text" class="form-control" id="productName" placeholder="" value="">
+                  <div class="invalid-feedback">
+                    Ingresa un nombre
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="productName">Nombre</label>
+                  <input type="text" class="form-control" id="productName" placeholder="" value="">
+                  <div class="invalid-feedback">
+                    Ingresa un nombre
+                  </div>
+                </div>
+              </div>
+              <hr class="mb-4">
+              <h5 class="mb-3">Tipo de publicación</h5>
+              <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                  <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+                    required="">
+                  <label class="custom-control-label" for="goldradio">Gold (13%)</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
+                  <label class="custom-control-label" for="premiumradio">Premium (7%)</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input id="standardradio" name="publicationType" type="radio" class="custom-control-input"
+                    required="">
+                  <label class="custom-control-label" for="standardradio">Estándar (3%)</label>
+                </div>
+              </div>
+              <hr class="mb-4">
+              <br>
+              <br>
+              <br>
     </main>
   </section>
-  
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
