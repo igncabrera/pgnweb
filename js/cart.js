@@ -4,6 +4,8 @@
 
 var items = {};
 let count = 0;
+let shipping = 0;
+
 
 
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -13,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     items = resultObj.data // guarda en la variable global todo lo que trajo el getJSONData 
 
     showItems(items)
-    
+    shippingTax();
   })
 });
 
@@ -71,6 +73,7 @@ function update(id) {
   var quantity = document.getElementById(id).value;
   document.getElementById("Subtotal" + id).innerHTML = quantity * subTotal  + " " + newCurrency;
   subTotalSum();
+  shippingTax()
 }
 
 function subTotalSum(){
@@ -80,4 +83,21 @@ function subTotalSum(){
   }
   document.getElementById('cart-total').innerHTML = subtotal +" "+ "UYU"
 }
+
+function shippingTax(){
+  let shippingType = document.getElementsByName("publicationType")
+
+  if(shippingType[0].checked){
+    shipping = 0.15 * parseFloat(document.getElementById('cart-total').innerHTML, 10)
+  }
+  if(shippingType[1].checked){
+    shipping = 0.07 * parseFloat(document.getElementById('cart-total').innerHTML, 10)
+  }
+  if(shippingType[2].checked){
+    shipping = 0.05 * parseFloat(document.getElementById('cart-total').innerHTML, 10)
+  }
+  document.getElementById('cart-shipping').innerHTML = parseInt(shipping) + " " + "UYU"
+  document.getElementById('cart-final').innerHTML = shipping + parseFloat(document.getElementById('cart-total').innerHTML, 10) + " " + "UYU"
+}
+
 

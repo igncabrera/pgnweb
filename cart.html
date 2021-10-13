@@ -119,6 +119,10 @@
             <label>Total</label>
             <div class="totals-value" id="cart-total"></div>
           </div>
+          <div class="totals-item totals-item-total">
+            <label>Final</label>
+            <div class="totals-value" id="cart-final"></div>
+          </div>
         </div>
 
         <button class="checkout">Checkout</button>
@@ -128,11 +132,11 @@
       <div class="">
         <div class="">
           <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Información del producto</h4>
+            <h4 class="mb-3">Información del usuario</h4>
             <form class="needs-validation" id="sell-info">
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label for="productName">Nombre</label>
+                  <label for="productName">Nombre completo</label>
                   <input type="text" class="form-control" id="productName" placeholder="" value="">
                   <div class="invalid-feedback">
                     Ingresa un nombre
@@ -141,38 +145,38 @@
               </div>
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label for="productName">Nombre</label>
+                  <label for="productName">Pais</label>
                   <input type="text" class="form-control" id="productName" placeholder="" value="">
                   <div class="invalid-feedback">
-                    Ingresa un nombre
+                    Ingresa un Pais
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label for="productName">Nombre</label>
+                  <label for="productName">Direccion</label>
                   <input type="text" class="form-control" id="productName" placeholder="" value="">
                   <div class="invalid-feedback">
-                    Ingresa un nombre
+                    Ingresa una Direccion
                   </div>
                 </div>
               </div>
               <hr class="mb-4">
-              <h5 class="mb-3">Tipo de publicación</h5>
+              <h5 class="mb-3">Tipo de Envio</h5>
               <div class="d-block my-3">
                 <div class="custom-control custom-radio">
                   <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
-                    required="">
-                  <label class="custom-control-label" for="goldradio">Gold (13%)</label>
+                    required="" onclick="shippingTax()">
+                  <label class="custom-control-label" for="goldradio">Premium (15%)</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
-                  <label class="custom-control-label" for="premiumradio">Premium (7%)</label>
+                  <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="" onclick="shippingTax()">
+                  <label class="custom-control-label" for="premiumradio">Express (7%)</label>
                 </div>
                 <div class="custom-control custom-radio">
                   <input id="standardradio" name="publicationType" type="radio" class="custom-control-input"
-                    required="">
-                  <label class="custom-control-label" for="standardradio">Estándar (3%)</label>
+                    required="" onclick="shippingTax()">
+                  <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
                 </div>
               </div>
               <hr class="mb-4">
