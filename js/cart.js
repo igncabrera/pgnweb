@@ -71,6 +71,9 @@ function update(id) {
     newCurrency = "UYU"
   }
   var quantity = document.getElementById(id).value;
+  if(quantity < 1){
+    quantity = 1
+  }
   document.getElementById("Subtotal" + id).innerHTML = quantity * subTotal  + " " + newCurrency;
   subTotalSum();
   shippingTax()
