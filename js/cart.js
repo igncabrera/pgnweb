@@ -38,7 +38,7 @@ function showItems() {
 
 
     htmlContentToAppend += `
-        <div class="product">
+        <div class="product" id="Product`+i+`">
           <div class="product-image">
             <img src="`+ item.src + `">
           </div>
@@ -47,10 +47,10 @@ function showItems() {
           </div>
           <div class="product-price">`+ price + " " + item.currency + `</div>
           <div class="product-quantity">
-            <input type="number" value="`+ item.count + `" min="1" id="` + i + `" oninput="update(` + i + `)">
+            <input type="number" value="`+ item.count + `" min="1" id="` + i + `" oninput="update(`+i+`)">
           </div>
           <div class="product-removal">
-            <button class="remove-product">
+            <button class="remove-product" onclick="remove(`+i+`)">
               Remove
             </button>
           </div>
@@ -76,8 +76,9 @@ function update(id) {
   }
   document.getElementById("Subtotal" + id).innerHTML = quantity * subTotal  + " " + newCurrency;
   subTotalSum();
-  shippingTax()
+  shippingTax();
 }
+
 
 function subTotalSum(){
   let subtotal = 0
@@ -103,4 +104,9 @@ function shippingTax(){
   document.getElementById('cart-final').innerHTML = shipping + parseFloat(document.getElementById('cart-total').innerHTML, 10) + " " + "UYU"
 }
 
+function remove(id){
+  document.getElementById("Subtotal" + id).innerHTML = 0
+  document.getElementById("Product"+ id).remove()
+  update(id);
+}
 
