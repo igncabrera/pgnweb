@@ -10,14 +10,15 @@
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/menu.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/profile.css">
+  <link rel="stylesheet" href="./css/menu.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -80,9 +81,9 @@
           <span class="link_name">Vender</span>
         </a>
       </li>
-      <li style="bottom: -61%;">
+      <li style="position: relative; top: 60%;">
         <ul class="sub-menu2">
-          <li><a href="my-profile.html"><i class='bx bxs-user' ></i>Mi perfil</a></li>
+          <li><a href="my-profile.html"><i class='bx bxs-user'></i>Mi perfil</a></li>
           <li><a href="cart.html"><i class='bx bx-cart'></i>Carrito</a></li>
         </ul>
         <div class="profile-details">
@@ -98,32 +99,113 @@
       </li>
     </ul>
   </div>
-  <footer class="text-muted bg-light">
-    <div class="container">
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+  <section class="home-section" style="position: absolute;">
+    <div class="home-content">
+      <i class='bx bx-menu'></i>
+      <span class="text"></span>
     </div>
-  </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
-    <span id="resultSpan"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+    <main role="main">
+      <div class="rounded bg-white mt-5 mb-5">
+        <div class="row">
+          <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+              <div class="avatar-wrapper">
+                <img class="profile-pic"
+                  src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+                  id="profileImg" />
+                <div class="upload-button">
+                  <i class="fa bx bx-upload" aria-hidden="true"></i>
+                </div>
+                <input class="file-upload" type="file" accept="image/*" />
+              </div>
+
+              <span class="font-weight-bold" id="user">Usuario</span><span class="text-black-50"
+                id="newEmail">Email</span><span>
+              </span>
+            </div>
+
+          </div>
+          <div class="col-md-5 border-right">
+            <div class="p-3 py-4">
+              <div class="text-center justify-content-between align-items-center mb-4">
+                <h4 class="text-center">Configuracion de perfil</h4>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-6"><label class="labels">Nombre</label><input type="text" class="form-control"
+                    placeholder="Nombre" value="" id="name" onfocus="this.value=''"></div>
+                <div class="col-md-6"><label class="labels">Apellidos</label><input type="text" class="form-control"
+                    value="" placeholder="Apellidos" id="surname" onfocus="this.value=''"></div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12"><label class="labels">Numero de contacto</label><input type="text"
+                    class="form-control" placeholder="Telefono/Celular" value="" id="phoneNumber"
+                    onfocus="this.value=''"></div>
+                <div class="col-md-12"><label class="labels">Correo electronico</label><input type="text"
+                    class="form-control" placeholder="Ingresa correo electronico" value="" id="email"
+                    onfocus="this.value=''"></div>
+                <div class="col-md-12">
+                  <label for="state">Categoría</label>
+                  <select class="form-control" id="ageCollapse">
+                    <option value="">Elija su edad...</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button"
+                  onclick="save()">Guardar cambios</button></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 py-5" style="position: relative; top: 25%;">
+              <button onclick="document.getElementById('id01').style.display='block'">Borrar datos</button>
+
+              <div id="id01" class="modal">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                  title="Close Modal">&times;</span>
+                <form class="modal-content" action="/action_page.php">
+                  <div class="container">
+                    <h1>Borrar datos</h1>
+                    <p>Estas seguro de que deseas borrar todos tus datos?</p>
+
+                    <div class="clearfix">
+                      <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'" class="close">Cancel</button>
+                      <button type="button" class="deletebtn" onclick="remove()">Delete</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </main>
+    <footer class="text-muted bg-light">
+      <div class="container">
+        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+        <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+      </div>
+    </footer>
+    <div class="alert fade alert-success" role="alert" id="alertResult">
+      <span id="resultSpan"></span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-  </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/my-profile.js"></script>
-  <script src="js/usuario.js"></script>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/my-profile.js"></script>
+    <script src="js/usuario.js"></script>
 </body>
 
 </html>

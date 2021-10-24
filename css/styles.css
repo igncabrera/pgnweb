@@ -146,8 +146,9 @@ a.custom-card:hover {
 }
 
 
-
-
+html {
+  overflow-y: scroll; 
+}
 
 
 
