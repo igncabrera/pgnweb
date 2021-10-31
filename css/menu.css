@@ -171,6 +171,8 @@
   padding: 12px 0;
   transition: all 0.5s ease;
 }
+
+
 .sidebar.close .profile-details{
   background: none;
 }
@@ -219,6 +221,8 @@
   left: 78px;
   width: calc(100% - 78px);
 }
+
+
 .home-section .home-content{
   height: 60px;
   display: flex;
@@ -264,6 +268,8 @@
 .sidebar .nav-links li .sub-menu2 a:hover{
   opacity: 1;
 }
+
+
 .sidebar.close .nav-links li .sub-menu2{
   position: absolute;
   left: 100%;

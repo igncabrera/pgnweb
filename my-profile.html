@@ -131,7 +131,7 @@
                 <h4 class="text-center">Configuracion de perfil</h4>
               </div>
               <div class="row mt-2">
-                <div class="col-md-6"><label class="labels">Nombre</label><input type="text" class="form-control"
+                <div class="col-md-6"><label class="labels">Nombre</label><input type="text"  class="form-control"
                     placeholder="Nombre" value="" id="name" onfocus="this.value=''"></div>
                 <div class="col-md-6"><label class="labels">Apellidos</label><input type="text" class="form-control"
                     value="" placeholder="Apellidos" id="surname" onfocus="this.value=''"></div>
@@ -140,11 +140,11 @@
                 <div class="col-md-12"><label class="labels">Numero de contacto</label><input type="text"
                     class="form-control" placeholder="Telefono/Celular" value="" id="phoneNumber"
                     onfocus="this.value=''"></div>
-                <div class="col-md-12"><label class="labels">Correo electronico</label><input type="text"
+                <div class="col-md-12"><label class="labels">Correo electronico</label><input type="text" autocomplete="off"
                     class="form-control" placeholder="Ingresa correo electronico" value="" id="email"
                     onfocus="this.value=''"></div>
                 <div class="col-md-12">
-                  <label for="state">Categoría</label>
+                  <label for="state">Edad</label>
                   <select class="form-control" id="ageCollapse">
                     <option value="">Elija su edad...</option>
                   </select>
@@ -167,8 +167,8 @@
                     <p>Estas seguro de que deseas borrar todos tus datos?</p>
 
                     <div class="clearfix">
-                      <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'" class="close">Cancel</button>
-                      <button type="button" class="deletebtn" onclick="remove()">Delete</button>
+                      <button type="button" class="cancelbtn" class="close">Cancelar</button>
+                      <button type="button" class="deletebtn" >Borrar</button>
                     </div>
                   </div>
                 </form>
