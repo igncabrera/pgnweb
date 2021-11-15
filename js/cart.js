@@ -17,12 +17,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     showItems(items)
     shippingTax();
-  })
-
-  /* document.querySelector('.remove-product').addEventListener("click", function (e) {
-    removeItem(this);
-  }); */
-  
+    dateForm();
+    changeNumbersLessThan10();
+  });
 });
 
 
@@ -53,11 +50,11 @@ function showItems() {
           </div>
           <div class="product-price">`+ price + " " + item.currency + `</div>
           <div class="product-quantity">
-            <input type="number" value="`+ item.count + `" min="1" id="` + i + `" oninput="update(` + i + `)">
+            <input type="number" value="`+ item.count + `" min="1" id="` + i + `" oninput="update(` + i + `)" style="width: 80px;">
           </div>
           <div class="product-removal">
             <button class="remove-product" onclick="remove(`+i+`)">
-              Remove
+              Remover
             </button>
           </div>
           <div class="product-line-price" id="Subtotal`+ i + `">` + subTotal + " " + newCurrency + `</div>
@@ -79,8 +76,11 @@ function update(id) {
   var quantity = document.getElementById(id).value;
   if (quantity < 1) {
     quantity = 1
+    document.getElementById(id).value = 1
   }
   document.getElementById("Subtotal" + id).innerHTML = quantity * subTotal + " " + newCurrency;
+
+  
 
   /* Suma de todos los totales */
 
@@ -110,7 +110,52 @@ function shippingTax() {
   document.getElementById('cart-shipping').innerHTML = parseInt(shipping) + " " + "UYU"
   document.getElementById('cart-final').innerHTML = shipping + parseFloat(document.getElementById('cart-total').innerHTML, 10) + " " + "UYU"
 }
-
+/*Desafiante, no me dio tiempo para hablar de el en el video, pero basicamente consigo la suma de las cantidades de productos del elemento que se va a borrar
+mediante la id proporcionada en el onclick qe fue agregado en el for que dio la estructura traida del json, al cual se lo resto al total con parseInt para que
+sean legibles como numeros y no string y no devuelva el "UYU", y por ultimo, usando la funcion "remove(), nativa de javascript para remover un nodo*/ 
 function remove(id) {
+  let priceToUpdate = document.getElementById("Subtotal" + id).parentElement.children[5].innerHTML
+  document.getElementById('cart-total').innerHTML = parseInt(document.getElementById('cart-total').innerHTML, 10) - parseInt(priceToUpdate, 10) + " " + "UYU"
+  shippingTax();
   document.getElementById("Subtotal" + id).parentElement.remove()
+}
+
+
+function dateForm(){
+
+  let htmlContentToAppend1 = "";
+  for(let i = 1; i <= 31; i++){
+    htmlContentToAppend1 += `
+    <option>`+i+`</option>
+    `
+  }
+  let htmlContentToAppend2 = "";
+  for(let i=1; i<=12; i++){
+    htmlContentToAppend2 += `
+    <option>`+i+`</option>
+    `
+  }
+  let htmlContentToAppend3 = "";
+  for(let i=2021; i>1900; i--){
+    htmlContentToAppend3 += `
+    <option>`+i+`</option>
+    `
+  }
+
+  document.getElementById('000010').innerHTML += `<option disabled selected value="" > -- </option>` + htmlContentToAppend1
+  document.getElementById('000011').innerHTML += `<option disabled selected value="" > -- </option>` + htmlContentToAppend1
+  document.getElementById('000020').innerHTML += `<option disabled selected value="" > -- </option>` + htmlContentToAppend2
+  document.getElementById('000021').innerHTML += `<option disabled selected value="" > -- </option>` + htmlContentToAppend2
+  document.getElementById('000030').innerHTML += `<option disabled selected value="" > ---- </option>` + htmlContentToAppend3
+  document.getElementById('000031').innerHTML += `<option disabled selected value="" > ---- </option>` + htmlContentToAppend3
+}
+
+function changeNumbersLessThan10(){
+  let numbers = document.getElementsByTagName('option')
+
+  for(let i=0; i < numbers.length; i++){
+    if(numbers[i].innerHTML < 10){
+      numbers[i].innerHTML = `0`+ numbers[i].innerHTML
+    }
+  }
 }

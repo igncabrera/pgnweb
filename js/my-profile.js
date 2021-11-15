@@ -87,7 +87,7 @@ function age() {
 
     for (i = 18; i <= 100; i++) {
         htmlContentToAppend += `
-        <option>`+ i + `</option>
+        <option>`+ i +`</option>
         `
     }
     document.getElementById('ageCollapse').innerHTML += htmlContentToAppend
@@ -103,7 +103,7 @@ function save() {
         profileImg: document.getElementById('profileImg').src,
     }
     localStorage.setItem("Profile", JSON.stringify(data));
-    location.reload();   
+    location.reload();
 }
 
 function remove() {

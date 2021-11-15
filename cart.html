@@ -14,8 +14,8 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/menu.css">
+  <link rel="stylesheet" href="./css/paymentmodal.css">
   <link rel="stylesheet" href="./css/cart.css">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,78 +111,168 @@
         </div>
 
         <div class="totals">
+          <div class="totals-item totals-item-total">
+            <label>Total</label>
+            <div class="totals-value" id="cart-total"></div>
+          </div>
           <div class="totals-item">
             <label>Envio</label>
             <div class="totals-value" id="cart-shipping"></div>
           </div>
           <div class="totals-item totals-item-total">
-            <label>Total</label>
-            <div class="totals-value" id="cart-total"></div>
-          </div>
-          <div class="totals-item totals-item-total">
             <label>Final</label>
             <div class="totals-value" id="cart-final"></div>
+            <button class="checkout" onclick="document.getElementById('id01').style.display='block'">Confirmar</button>
           </div>
+
         </div>
 
-        <button class="checkout">Checkout</button>
 
+
+        <div id="id01" class="modal">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close"
+            title="Close Modal">×</span>
+          <form class="modal-content" method="post">
+            <div class="container">
+              <form class="needs-validation">
+                <div class="row">
+                  <h4>Datos personales</h4>
+                  <div class="input-group input-group-icon"><input type="text" placeholder="Nombre completo" required />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                  </div>
+                  <div class="input-group input-group-icon"><input type="country" placeholder="Pais" required />
+                    <div class="input-icon"><i class="fa fa-globe"></i></div>
+                  </div>
+                  <div class="input-group input-group-icon"><input type="city" placeholder="Ciudad" required />
+                    <div class="input-icon"><i class="bx bxs-city"></i></div>
+                  </div>
+                  <div class="input-group input-group-icon"><input type="adress" placeholder="Direccion" required />
+                    <div class="input-icon"><i class="fa fa-map-marker"></i></div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-half">
+                    <h4>Fecha de nacimiento</h4>
+                    <div class="input-group">
+
+                      <select class="col-third form-select" id="000010" required>
+
+                      </select>
+
+                      <select class="col-third form-select" id="000020" required>
+
+                      </select>
+
+                      <select class="col-third form-select" id="000030" required>
+
+                      </select>
+
+                    </div>
+                  </div>
+                  <div class="col-half">
+                    <h4>Sexo</h4>
+                    <div class="input-group">
+                      <input type="radio" name="gender" value="male" id="gender-male" required checked />
+                      <label for="gender-male">Hombre</label>
+
+                      <input type="radio" name="gender" value="female" id="gender-female" required />
+                      <label for="gender-female">Mujer</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <h4>Detalles de pago</h4>
+                  <div class="input-group">
+                    <input type="radio" name="payment-method" value="card" id="payment-method-card" checked="true" />
+                    <label for="payment-method-card">
+                      <span>
+                        <i class="fa fa-cc-visa"></i>
+                        Tarjeta de credito
+                      </span>
+                    </label>
+                    <input type="radio" name="payment-method" value="paypal" id="payment-method-paypal" />
+                    <label for="payment-method-paypal">
+                      <span>
+                        <i class="fa fa-cc-paypal"></i>
+                        Paypal
+                      </span>
+                    </label>
+                  </div>
+                  <div id="payment-box" class="container">
+                    <div class="input-group input-group-icon">
+                      <input type="number" placeholder="Numero de tarjeta" min="1000000000000000" max="9999999999999999"
+                        required />
+                      <div class="input-icon">
+                        <i class="fa fa-credit-card"></i>
+                      </div>
+                    </div>
+                    <div class="col-half">
+                      <div class="input-group input-group-icon">
+                        <input type="number" max="999" min="100" placeholder="CCV/CVC" required />
+                        <div class="input-icon">
+                          <i class="fa fa-lock"></i>
+                        </div>
+                      </div>
+                    </div>         
+                    <div class="col" style="padding-left: 0px; padding-right: 0px;">
+                      <div class="input-group">
+                      
+                        <select class="col-third form-select" id="000011" required>
+
+
+                        </select>
+
+                        <select class="col-third form-select" id="000021" required>
+
+
+                        </select>
+
+                        <select class="col-third form-select" id="000031" required>
+
+
+                        </select>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="margin-bottom: -10px;">
+                  <div class="input-group form-group form-check">
+                    <input type="checkbox" id="terms" class="form-check-input" required />
+                    <label for="terms" style="color: black;" class="form-check-label">
+                      Acepto los terminos y condiciones de este servicio y confirmo que lei los terminos de servicio.
+                    </label>
+                  </div>
+                </div>
+                <button class="checkout" type="submit">Finalizar</button>
+              </form>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-8">
+          <h5 class="mb-3">Tipo de Envio</h5>
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+                required="" onclick="shippingTax()">
+              <label class="custom-control-label" for="goldradio">Premium (15%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required=""
+                onclick="shippingTax()">
+              <label class="custom-control-label" for="premiumradio">Express (7%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required=""
+                onclick="shippingTax()">
+              <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="">
-        <div class="">
-          <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Información del usuario</h4>
-            <form class="needs-validation" id="sell-info">
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="productName">Nombre completo</label>
-                  <input type="text" class="form-control" id="productName" placeholder="" value="">
-                  <div class="invalid-feedback">
-                    Ingresa un nombre
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="productName">Pais</label>
-                  <input type="text" class="form-control" id="productName" placeholder="" value="">
-                  <div class="invalid-feedback">
-                    Ingresa un Pais
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="productName">Direccion</label>
-                  <input type="text" class="form-control" id="productName" placeholder="" value="">
-                  <div class="invalid-feedback">
-                    Ingresa una Direccion
-                  </div>
-                </div>
-              </div>
-              <hr class="mb-4">
-              <h5 class="mb-3">Tipo de Envio</h5>
-              <div class="d-block my-3">
-                <div class="custom-control custom-radio">
-                  <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
-                    required="" onclick="shippingTax()">
-                  <label class="custom-control-label" for="goldradio">Premium (15%)</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="" onclick="shippingTax()">
-                  <label class="custom-control-label" for="premiumradio">Express (7%)</label>
-                </div>
-                <div class="custom-control custom-radio">
-                  <input id="standardradio" name="publicationType" type="radio" class="custom-control-input"
-                    required="" onclick="shippingTax()">
-                  <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
-                </div>
-              </div>
-              <hr class="mb-4">
-              <br>
-              <br>
-              <br>
+      <hr class="mb-4">
     </main>
   </section>
 
